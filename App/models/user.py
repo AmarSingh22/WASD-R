@@ -18,6 +18,30 @@ class User(db.Model, UserMixin):
             'id': self.id,
             'username': self.username
         }
+    def add_workout(self, name):
+        new_workout = UserWorkout(name = name)
+        new_workout.user_id = self.id
+        self.Routines.append(new_workout)
+        db.session.add(self)
+        db.session.commit()
+        return new_workout
+
+    def del_workout(self, workout_id):
+        workout = UserWorkout.query.filter_by(id=workout_id, user_id =self.id).first()
+        if workout:
+            db.session.delete(workout)
+            db.session.commit()
+            return True
+        return None
+
+    def update_name(self, workout_id, name):
+        workout = UserWorkout.query.filter_by(id = workout_id, user_id = self.id).first()
+        if workout:
+            workout.name = name
+            db.session.add(workout)
+            db.session.commit()
+            return True
+        return None
 
     def set_password(self, password):
         """Create hashed password."""

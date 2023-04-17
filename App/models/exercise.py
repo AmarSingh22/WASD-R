@@ -22,43 +22,64 @@ class Exercise(db.Model):
     return f'<Exercise {self.ex_id} {self.name} - {self.muscle}>'
   pass
 
-class Workout(db.Model):
-  id = db.Column(db.Integer, primary_key=True)
-  name = db.Column(db.String(80), nullable=False)
-  Exercises = db.relationship('WorkoutExercises', backref='workout', lazy=True, cascade="all, delete-orphan")
-
-  def __init__(self, name):
-    self.name = name
-
-  def get_json(self):
-    return{
-      "id":self.id,
-      "name":self.name,
-    }
-
-  def __repr__(self):
-    return f'<Workout: {self.id} - {self.name}>'
-  pass
-
 class UserWorkout(db.Model):
   id = db.Column(db.Integer, primary_key=True)
   user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
-  workout_id = db.Column(db.Integer, db.ForeignKey('workout.id'), nullable=False)
+  name = db.Column(db.String(80), nullable=False)
+  Exercises = db.relationship('WorkoutExercises', backref='userworkout', lazy=True, cascade="all, delete-orphan")
+
+  def __init__(self, name):
+    self.name = name
+    
+  def add_exercise(self, exercise_id):
+    new_exercise = WorkoutExercises(exercise_id = exercise_id)
+    new_exercise.workout_id = self.id
+    self.Exercises.append(new_exercise)
+    db.session.add(self)
+    db.session.commit()
+    return new_exercise
+
+  def del_exercise(self, exercise_id):
+    exercise = WorkoutExercises.query.filter_by(id=exercise_id, workout_id=self.id).first()
+    if exercise:
+      db.session.delete(exercise)
+      db.session.commit()
+      return True
+    return None
+
+  def update_sets(self, exercise_id, sets):
+    exercise = WorkoutExercises.query.filter_by(id = exercise_id, workout_id = self.id).first()
+    if exercise:
+      exercise.sets = sets
+      db.session.add(exercise)
+      db.session.commit()
+      return True
+    return None
+
+  def update_reps(self, exercise_id, reps):
+    exercise = WorkoutExercises.query.filter_by(id = exercise_id, workout_id = self.id).first()
+    if exercise:
+      exercise.reps = reps
+      db.session.add(exercise)
+      db.session.commit()
+      return True
+    return None
 
   def get_json(self):
     return{
       "id":self.id,
-      "Workout_id": self.workout_id
+      "user_id": self.user_id,
+      "name": self.name
     }
 
   def __repr__(self):
-    return f'<Workout: {self.id} | {self.user_id} | {self.workout_id}>'
+    return f'<Workout: {self.id} - {self.name} {self.user_id} | >'
   pass
 
 
 class WorkoutExercises(db.Model):
   id = db.Column(db.Integer, primary_key=True)
-  workout_id = db.Column(db.Integer, db.ForeignKey('workout.id'), nullable=False)
+  workout_id = db.Column(db.Integer, db.ForeignKey('user_workout.id'), nullable=False)
   exercise_id = db.Column(db.Integer, db.ForeignKey('exercise.id'), nullable=False)
   sets = db.Column(db.Integer, nullable=False, default=1)
   reps = db.Column(db.Integer, nullable=False, default=1)
