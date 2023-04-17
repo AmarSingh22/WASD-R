@@ -34,7 +34,7 @@ class User(db.Model, UserMixin):
             return True
         return None
 
-    def update_name(self, workout_id, name):
+    def update_workout(self, workout_id, name):
         workout = UserWorkout.query.filter_by(id = workout_id, user_id = self.id).first()
         if workout:
             workout.name = name

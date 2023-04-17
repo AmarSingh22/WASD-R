@@ -39,32 +39,6 @@ class UserWorkout(db.Model):
     db.session.commit()
     return new_exercise
 
-  def del_exercise(self, exercise_id):
-    exercise = WorkoutExercises.query.filter_by(id=exercise_id, workout_id=self.id).first()
-    if exercise:
-      db.session.delete(exercise)
-      db.session.commit()
-      return True
-    return None
-
-  def update_sets(self, exercise_id, sets):
-    exercise = WorkoutExercises.query.filter_by(id = exercise_id, workout_id = self.id).first()
-    if exercise:
-      exercise.sets = sets
-      db.session.add(exercise)
-      db.session.commit()
-      return True
-    return None
-
-  def update_reps(self, exercise_id, reps):
-    exercise = WorkoutExercises.query.filter_by(id = exercise_id, workout_id = self.id).first()
-    if exercise:
-      exercise.reps = reps
-      db.session.add(exercise)
-      db.session.commit()
-      return True
-    return None
-
   def get_json(self):
     return{
       "id":self.id,
@@ -76,7 +50,6 @@ class UserWorkout(db.Model):
     return f'<Workout: {self.id} - {self.name} {self.user_id} | >'
   pass
 
-
 class WorkoutExercises(db.Model):
   id = db.Column(db.Integer, primary_key=True)
   workout_id = db.Column(db.Integer, db.ForeignKey('user_workout.id'), nullable=False)
@@ -87,6 +60,20 @@ class WorkoutExercises(db.Model):
   def __init__(self, sets, reps):
     self.sets = sets
     self.reps = reps
+
+  def update_sets(self, sets):
+    self.sets = sets
+    db.session.add(exercise)
+    db.session.commit()
+
+  def update_reps(self, reps):
+    self.reps = reps
+    db.session.add(exercise)
+    db.session.commit()
+
+  def del_exercise(self):
+      db.session.delete(self)
+      db.session.commit()
 
   def get_json(self):
     return{

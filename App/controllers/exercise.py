@@ -1,4 +1,4 @@
-from App.models import User, Exercise
+from App.models import User, Exercise, UserWorkout, WorkoutExercises
 from App.database import db
 
 
