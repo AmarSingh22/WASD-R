@@ -1,7 +1,8 @@
 from App.database import db
+from .user import *
 
 class Exercise(db.Model):
-  ex_id = db.Column(db.Integer, primary_key=True)
+  id = db.Column(db.Integer, primary_key=True)
   name = db.Column(db.String(80), unique=True ,nullable=False)
   ex_type = db.Column(db.String(80), nullable=False)
   muscle= db.Column(db.String(80), nullable=False)
@@ -19,21 +20,6 @@ class Exercise(db.Model):
 
   def __repr__(self):
     return f'<Exercise {self.ex_id} {self.name} - {self.muscle}>'
-  pass
-
-class UserWorkout(db.Model):
-  id = db.Column(db.Integer, primary_key=True)
-  user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
-  workout_id = db.Column(db.Integer, db.ForeignKey('Workout.id'), nullable=False)
-
-  def get_json(self):
-    return{
-      "id":self.id,
-      "Workout_id": self.workout_id
-    }
-
-  def __repr__(self):
-    return f'<Workout: {self.id} | {self.user_id} | {self.workout_id}>'
   pass
 
 class Workout(db.Model):
@@ -54,10 +40,26 @@ class Workout(db.Model):
     return f'<Workout: {self.id} - {self.name}>'
   pass
 
+class UserWorkout(db.Model):
+  id = db.Column(db.Integer, primary_key=True)
+  user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+  workout_id = db.Column(db.Integer, db.ForeignKey('workout.id'), nullable=False)
+
+  def get_json(self):
+    return{
+      "id":self.id,
+      "Workout_id": self.workout_id
+    }
+
+  def __repr__(self):
+    return f'<Workout: {self.id} | {self.user_id} | {self.workout_id}>'
+  pass
+
+
 class WorkoutExercises(db.Model):
   id = db.Column(db.Integer, primary_key=True)
-  workout_id = db.Column(db.Integer, db.ForeignKey('Workout.id'), nullable=False)
-  exercise_id = db.Column(db.Integer, db.ForeignKey('Exercise.id'), nullable=False)
+  workout_id = db.Column(db.Integer, db.ForeignKey('workout.id'), nullable=False)
+  exercise_id = db.Column(db.Integer, db.ForeignKey('exercise.id'), nullable=False)
   sets = db.Column(db.Integer, nullable=False, default=1)
   reps = db.Column(db.Integer, nullable=False, default=1)
 
