@@ -1,10 +1,10 @@
 import click, pytest, sys
 from flask import Flask
 from flask.cli import with_appcontext, AppGroup
-
+import json
 from App.database import db, get_migrate
 from App.main import create_app
-from App.controllers import ( create_user, get_all_users_json, get_all_users )
+from App.controllers import ( create_user, get_all_users_json, get_all_users, create_Exercise)
 
 # This commands file allow you to create convenient CLI commands for testing controllers
 
@@ -17,6 +17,10 @@ def initialize():
     db.drop_all()
     db.create_all()
     create_user('bob', 'bobpass')
+    with open('Exercises.json') as file:
+        data = json.load(file)
+        for row in data:
+            create_Exercise(row['name'], row['type'], row['muscle'], row['equipment'], row['difficulty'], row['instructions'])
     print('database intialized')
 
 '''
