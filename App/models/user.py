@@ -7,6 +7,9 @@ class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     username =  db.Column(db.String, nullable=False, unique=True)
     password = db.Column(db.String(120), nullable=False)
+    gender = db.Column(db.String(1))
+    height = db.Column(db.Integer)
+    weight = db.Column(db.Integer)
     Routines = db.relationship('UserWorkout', backref='user', lazy=True, cascade="all, delete-orphan")
 
     def __init__(self, username, password):
@@ -42,6 +45,22 @@ class User(db.Model, UserMixin):
             db.session.commit()
             return True
         return None
+
+    def update_gender(self, gender):
+        self.gender = gender
+        db.session.add(self)
+        db.session.commit()
+        return True
+    def update_height(self, height):
+        self.height = height
+        db.session.add(self)
+        db.session.commit()
+        return True
+    def update_weight(self, weight):
+        self.weight = weight
+        db.session.add(self)
+        db.session.commit()
+        return True
 
     def set_password(self, password):
         """Create hashed password."""
