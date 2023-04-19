@@ -1,6 +1,8 @@
 from App.database import db
 from .user import *
 
+import datetime
+
 class Exercise(db.Model):
   id = db.Column(db.Integer, primary_key=True)
   name = db.Column(db.String(80), unique=True ,nullable=False)
@@ -39,6 +41,32 @@ class UserWorkout(db.Model):
     db.session.commit()
     return new_exercise
 
+  def update_sets(self, exercise_id, sets):
+    exercise = WorkoutExercises.query.get(exercise_id)
+    if exercise:      
+      exercise.sets = sets
+      db.session.add(exercise)
+      db.session.commit()
+      return True
+    return None
+
+  def update_reps(self, exercise_id, reps):
+    exercise = WorkoutExercises.query.get(exercise_id)
+    if exercise:
+      exercise.reps = reps
+      db.session.add(exercise)
+      db.session.commit()
+      return True
+    return None
+
+  def del_exercise(self, exercise_id):
+    exercise = WorkoutExercises.query.get(exercise_id)
+    if exercise:
+      db.session.delete(exercise)
+      db.session.commit()
+      return True
+    return None
+  
   def get_json(self):
     return{
       "id":self.id,
@@ -61,20 +89,6 @@ class WorkoutExercises(db.Model):
     self.sets = sets
     self.reps = reps
 
-  def update_sets(self, sets):
-    self.sets = sets
-    db.session.add(exercise)
-    db.session.commit()
-
-  def update_reps(self, reps):
-    self.reps = reps
-    db.session.add(exercise)
-    db.session.commit()
-
-  def del_exercise(self):
-      db.session.delete(self)
-      db.session.commit()
-
   def get_json(self):
     return{
       "id":self.id,
@@ -87,3 +101,24 @@ class WorkoutExercises(db.Model):
   def __repr__(self):
     return f'<Workout: {self.workout_id} - {self.exercise_id} sets: {self.sets} reps: {self.reps}>'
   pass
+
+class WorkoutCalender(db.Model):
+  id = db.Column(db.Integer, primary_key=True)
+  user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+  name = db.Column(db.String(80), nullable=False)
+  date = db.Column(db.Date, default=datetime.datetime.now())
+
+  def __init__(self, name, date):
+    self.name = name
+    self.date = date
+
+  def get_json(self):
+    return{
+      "id":self.id,
+      "user_id": self.user_id,
+      "name": self.name,
+      "date" : self.date
+    }
+
+  def __repr__(self):
+    return f'<Workout: {self.id} - {self.name} {self.user_id} at {self.date} >'

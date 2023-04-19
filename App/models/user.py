@@ -11,6 +11,7 @@ class User(db.Model, UserMixin):
     height = db.Column(db.Integer)
     weight = db.Column(db.Integer)
     Routines = db.relationship('UserWorkout', backref='user', lazy=True, cascade="all, delete-orphan")
+    Calendar = db.relationship('WorkoutCalender', backref='user', lazy=True, cascade="all, delete-orphan")
 
     def __init__(self, username, password):
         self.username = username
@@ -30,7 +31,7 @@ class User(db.Model, UserMixin):
         return new_workout
 
     def del_workout(self, workout_id):
-        workout = UserWorkout.query.filter_by(id=workout_id, user_id =self.id).first()
+        workout = UserWorkout.query.get(workout_id)
         if workout:
             db.session.delete(workout)
             db.session.commit()
@@ -38,7 +39,7 @@ class User(db.Model, UserMixin):
         return None
 
     def update_workout(self, workout_id, name):
-        workout = UserWorkout.query.filter_by(id = workout_id, user_id = self.id).first()
+        workout = UserWorkout.query.get(workout_id)
         if workout:
             workout.name = name
             db.session.add(workout)
@@ -61,6 +62,14 @@ class User(db.Model, UserMixin):
         db.session.add(self)
         db.session.commit()
         return True
+
+    def workout_Completed(self, name):
+        workout_com = WorkoutCalender(name = name)
+        workout_com.user_id = self.id
+        self.Calendar.append(workout_com)
+        db.session.add(self)
+        db.session.commit()
+        return workout_com
 
     def set_password(self, password):
         """Create hashed password."""
