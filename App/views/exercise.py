@@ -15,12 +15,11 @@ def login_page():
 def signup_page():
     return render_template("signup.html")
 
-
 @exer_views.route("/home", methods=['GET'])
 @login_required
 def home_page():
-  
-    return render_template("home.html")
+  workouts = UserWorkout.query.filter_by(user_id == jwt_current_user.id).all()
+  return render_template("home.html", workouts = workouts)
 
 @exer_views.route('/create-workout', methods=['POST'])
 @login_required
@@ -77,36 +76,49 @@ def add_exercise_action(exer_id):
         flash('Workout name does not exist')
     return redirect(url_for('exer_page'))
 
-@exer_views.route('/exercise-reps/<int:work_exer_id>', methods=["POST"])
+
+
+@exer_views.route('/workout/<int:workout_id>', methods=["GET"])
 @login_required
-def update_reps_action(work_exer_id):
+def workout_view(workout_id):
+  workout = UserWorkout.query.get(workout_id)
+
+  if workout and workout.user_id == current_user.id:
+    return render_template('/workout.html', workout = workout)
+  return redirect(url_for('home_page'))
+
+
+@exer_views.route('/workout/<int:workout_id>/exercise-reps/<int:work_exer_id>', methods=["POST"])
+@login_required
+def update_reps_action(workout_id, work_exer_id):
   data = request.form
+  workout = UserWorkout.query.get(workout_id)
   workoutExer = WorkoutExercises.query.get(work_exer_id)
-  workout = UserWorkout.query.get(workoutExer.workout_id)
 
   if workoutExer and workout.user_id == current_user.id:
     workoutExer.update_reps(data['reps'])
-  return redirect(url_for('home_page'))
+  return redirect(url_for('workout_view'))
 
-@exer_views.route('/exercise-sets/<int:work_exer_id>', methods=["POST"])
+@exer_views.route('/workout/<int:workout_id>/<int:workout_id>/exercise-sets/<int:work_exer_id>', methods=["POST"])
 @login_required
-def update_sets_action(work_exer_id):
+def update_sets_action(workout_id, work_exer_id):
   data = request.form
+  workout = UserWorkout.query.get(workout_id)
   workoutExer = WorkoutExercises.query.get(work_exer_id)
-  workout = UserWorkout.query.get(workoutExer.workout_id)
 
   if workoutExer and workout.user_id == current_user.id:
     workoutExer.update_sets(data['sets'])
-  return redirect(url_for('home_page'))
+  return redirect(url_for('workout_view'))
 
-@exer_views.route('/delete-exercise/<int:work_exer_id>', methods=["GET"])
+@exer_views.route('/workout/<int:workout_id>/delete-exercise/<int:work_exer_id>', methods=["GET"])
 @login_required
-def release_pokemon_action(work_exer_id):
+def delete_exercise_action(workout_id, work_exer_id):
+  workout = UserWorkout.query.get(workout_id)
   workoutExer = WorkoutExercises.query.get(work_exer_id)
-  workout = UserWorkout.query.get(workoutExer.workout_id)
 
   if workoutExer == None or workout.user_id == current_user.id:
+    workoutExer.del_exercise()
     flash('Invalid id or unauthorized')
   else:
-    flash('Pokemon Released')
-  return redirect(url_for('home_page'))
+    flash('Exercise deleted')
+  return redirect(url_for('workout_view'))
