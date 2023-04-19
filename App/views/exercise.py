@@ -99,7 +99,7 @@ def update_reps_action(workout_id, work_exer_id):
     workoutExer.update_reps(data['reps'])
   return redirect(url_for('workout_view'))
 
-@exer_views.route('/workout/<int:workout_id>/<int:workout_id>/exercise-sets/<int:work_exer_id>', methods=["POST"])
+@exer_views.route('/workout/<int:workout_id>/exercise-sets/<int:work_exer_id>', methods=["POST"])
 @login_required
 def update_sets_action(workout_id, work_exer_id):
   data = request.form
