@@ -84,7 +84,7 @@ def workout_view(workout_id):
   workout = UserWorkout.query.get(workout_id)
 
   if workout and workout.user_id == current_user.id:
-    return render_template('/workout.html', workout = workout)
+    return render_template('workout.html', workout = workout)
   return redirect(url_for('home_page'))
 
 
