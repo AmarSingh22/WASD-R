@@ -11,21 +11,21 @@ exer_views = Blueprint('exer_views', __name__, template_folder='../templates')
 #Page Actions .................................................................................
 
 #User Update Actions
-@exer_views.route('/profile/gender>', methods=['POST'])
+@exer_views.route('/profile/gender', methods=['POST'])
 @login_required
 def update_gender_action():
   data = request.form
   current_user.update_gender(data['gender'])
   return redirect(url_for('profile_page'))
 
-@exer_views.route('/profile/height>', methods=['POST'])
+@exer_views.route('/profile/height', methods=['POST'])
 @login_required
 def update_height_action():
   data = request.form
   current_user.update_height(data['height'])
   return redirect(url_for('profile_page'))
 
-@exer_views.route('/profile/weight>', methods=['POST'])
+@exer_views.route('/profile/weight', methods=['POST'])
 @login_required
 def update_weight_action():
   data = request.form
