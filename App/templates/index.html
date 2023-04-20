@@ -1,13 +1,11 @@
 {% extends "layout.html" %}
-{% block title %}Workout App - Login{% endblock %}
-{% block page %}Workout App - Login{% endblock %}
+{% block title %} Wonder Workout - Login{% endblock %}
+{% block page %}Wonder Workout- Login{% endblock %}
 
 {{ super() }}
 
 {% block content %}
-        <div class="image"> 
-            <img src="../static/login.jpeg"> 
-        </div>
+        <img src="../static/login.jpg"> 
         <main class="form-box">
         <form class="form" method="POST" action="/login" style="padding:1em">
           <label for="username">Username:</label>
@@ -18,8 +16,8 @@
           <br>
           <button type="submit">Log In</button>
         </form>
-        <span class="center">
-          <div class="align-left"> 
+        <span class="right">
+          <div class="align-right"> 
               DON'T HAVE AN ACCOUNT?
           </div>
           <a href="/signup" class="invisible">
