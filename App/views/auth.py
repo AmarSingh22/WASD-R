@@ -4,6 +4,7 @@ from flask_login import login_required, login_user, current_user, logout_user
 
 from.index import index_views
 from .exercise import exer_views
+from App.models import *
 
 from App.controllers import (
     create_user,
@@ -28,15 +29,31 @@ def get_user_page():
 def identify_page():
     return jsonify({'message': f"username: {current_user.username}, id : {current_user.id}"})
 
+@auth_views.route('/signup', methods=['POST'])
+def signup_action():
+  data = request.form 
+  newuser = User(username=data['username'], password=data['password'])
+  try:
+    db.session.add(newuser)
+    db.session.commit() 
+    login_user(newuser)
+    flash('Account Created!') 
+    return redirect('/') 
+  except Exception: 
+    db.session.rollback()
+    flash("username already exists") 
+  return redirect('/signup')
 
 @auth_views.route('/login', methods=['POST'])
 def login_action():
-    data = request.form
-    user = login(data['username'], data['password'])
-    if user:
-        login_user(user)
-        return redirect('/home')
-    return redirect('/')
+  data = request.form
+  user = User.query.filter_by(username=data['username']).first()
+  if user and user.check_password(data['password']):
+    login_user(user)
+    return redirect('/home')
+  else:
+    flash('Invalid username or password')
+  return redirect('/')
 
 @auth_views.route('/logout', methods=['GET'])
 def logout_action():
