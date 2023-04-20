@@ -5,17 +5,26 @@
 {{ super() }}
 
 {% block content %}
-      <main>
-        <h2>Login</h2>
-        <form>
+        <div class="image"> 
+            <img src="../static/login.jpeg"> 
+        </div>
+        <main class="form-box">
+        <form class="form">
           <label for="username">Username:</label>
-          <input placeholder="Enter Username" type="text" id="username" name="username" required>
+          <input class="" placeholder="Enter Username" type="text" id="username" name="username" required>
           <br>
           <label for="password">Password:</label>
           <input placeholder="Enter Password" type="password" id="password" name="password" required>
           <br>
           <button type="submit">Log In</button>
         </form>
+        <span class="center">
+          <div class="align-left"> 
+              DON'T HAVE AN ACCOUNT?
+          </div>
+          <a href="/signup" class="invisible">
+              <input type="button" value="SIGNUP" id="signup-btn" class="submit-btn">
+          </a>
+      </span>
       </main>
-
 {% endblock %}

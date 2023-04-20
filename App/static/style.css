@@ -1,54 +1,91 @@
-.signup-box {
-   position: absolute;
-   top: 50%;
-   left: 50%;
-   transform: translate(-50%, -50%);
-   width: 400px;
-   padding: 40px;
-   background: rgba(0, 0, 0, 0.5);
-   box-shadow: 0 15px 25px rgba(0, 0, 0, 0.6);
-   border-radius: 10px;
-   color: #fff;
-}
+body {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    background-image: url('background-image.jpg');
+    background-color: #555555;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
 
-.signup-box h1 {
-  margin: 0 0 30px;
-  padding: 0;
-  text-align: center;
-  font-size: 30px;
+img{
+    width: 900px;
+    height: 300px;
 }
-
-.signup-form {
-  display: flex;
-  flex-direction: column;
-}
-
-.login-form label {
-   margin: 0;
-   padding: 0;
-   font-weight: bold;
-}
-
-.login-form input {
+  .form-box {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 400px;
+    padding: 40px;
+    border-radius: 10px;
+    color: #fff;
+  }
+  
+  .form-box h1 {
+    margin: 0 auto;
+    padding: 0;
+    text-align: center;
+    font-size: 30px;
+  }
+  
+  .form-label{
+    margin: 0 auto;
+    padding:40px;
+    width: 150px;
+    background-color: black;
+    height: 10px;
+    border-radius: 15px;
+  }
+  
+  .form {
+    display: flex;
+    flex-direction: column;
+  }
+  .form label {
+    margin: 0;
+    padding: 0;
+    font-weight: bold;
+  }
+  .form input {
     margin-bottom: 20px;
     padding: 10px;
     border-radius: 3px;
     border: none;
-    background: none;
+    background: #fff;
     color: #fff;
     border-bottom: 2px solid #fff;
     font-size: 16px;
-}
+  }
+  .submit-btn {
+    background-color: #FF0000;
+    border: none;
+    color: black;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 3px;
+    cursor: pointer;
+  }
   
-.btn {
-   background-color: #4CAF50;
-   border: none;
-   color: white;
-   padding: 10px 20px;
-   text-align: center;
-   text-decoration: none;
-   display: inline-block;
-   font-size: 16px;
-   border-radius: 3px;
-   cursor: pointer;
-}
+  .login-box {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 400px;
+    padding: 40px;
+    border-radius: 10px;
+    color: #fff;
+  }
+  
+  .login-box h1 {
+    margin: 0 auto;
+    padding: 0;
+    text-align: center;
+    font-size: 30px;
+  } 
+  
