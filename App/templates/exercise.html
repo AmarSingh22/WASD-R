@@ -1,0 +1,42 @@
+{% extends "layout.html" %}
+{% block title %}Wonder Workout {% endblock %}
+{% block page %}Wonder Workout Exercises{% endblock %}
+
+{{ super() }}
+
+{% block content %}
+
+<div class="">
+    <table>
+        <thead>
+            <tr><th>EXERCISE</th>
+             <th>SETS
+             </th>
+             <th>REPS</th>
+           </tr>
+         </thead>
+         <tbody> 
+        {% for exer in exercises %}
+            <tr>
+                <td>{{exer.name}}
+                    <button type="button">Edit</button>
+                    <button type=""button>Delete</button>
+                </td>
+                <td></td>
+                <td>
+
+                </td>
+            </tr>
+         {% endfor %}
+         </tbody>
+    </table>
+</div>
+
+<script> 
+function numSets(){
+    document.getElementById();
+    <input type="number" id="quantity" name="quantity" min="1" max="10"> </input>
+}
+</script>
+
+{% end block %}
