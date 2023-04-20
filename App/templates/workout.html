@@ -9,13 +9,13 @@
 <div class="">
     <table>
         <thead>
-            <tr><th>EXERCISE</th>
-             <th>SETS
-             </th>
-             <th>REPS</th>
-           </tr>
-         </thead>
-         <tbody> 
+            <tr>
+                <th>EXERCISE</th>
+                <th>SETS</th>
+                <th>REPS</th>
+            </tr>
+        </thead>
+        <tbody> 
         {% for exer in exercises %}
             <tr>
                 <td>{{exer.name}}
@@ -23,12 +23,10 @@
                     <button type=""button>Delete</button>
                 </td>
                 <td></td>
-                <td>
-
-                </td>
+                <td></td>
             </tr>
-         {% endfor %}
-         </tbody>
+        {% endfor %}
+        </tbody>
     </table>
 </div>
 
