@@ -28,7 +28,7 @@ def signup_page():
 @login_required
 def home_page():
   user = User.query.get(current_user.id)
-  return render_template("home.html", workouts = user.Routines)
+  return render_template("home.html", workouts = user.Routines, user_name = user.username)
 
 @index_views.route('/workout/<int:workout_id>', methods=["GET"])
 @login_required
@@ -62,3 +62,8 @@ def profile_page():
 def calendar_page():
   user = User.query.get(current_user.id)
   render_template("calendar.html", user = user)
+
+@index_views.route('/contact-us', methods=['GET'])
+@login_required
+def contact_page():
+  render_template("contact.html")
