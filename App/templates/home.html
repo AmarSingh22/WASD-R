@@ -1,9 +1,37 @@
 {% extends "layout.html" %}
-{% block title %}Home{% endblock %}
-{% block page %}Workout App{% endblock %}
+{% block title %}Wonder Workout {% endblock %}
+{% block page %}Wonder Workout{% endblock %}
+
 
 {{ super() }}
 
 {% block content %}
-    <h1> Help pleaseeeee work</h1>
+<div><h3>Hello,  </h3>
+  <div>SESSIONS:</div>
+  </div>
+  <main>
+    <div class="workout">
+    <a href="/workout_page">Workout</a>
+    </div>
+
+    <div class="workout">
+      <a class="adding" href="#">+</a>
+    </div>
+
+    <div class="workout">
+      <a class="adding" href="#">+</a>
+    </div>
+    
+  </main>
+  <footer>
+    <nav>
+      <ul>
+        <li><a href="/profile">Profile</a></li>
+        <li><a href="/excer_info">Exercise Info</a></li>
+        <li><a href="/contact_page">Contact Us</a></li>
+        <li><a href="/calender_page">Calendar</a></li>
+      </ul>
+    </nav>
+  </footer>
+</body>
 {% endblock %}
