@@ -22,13 +22,13 @@
                     <a href="/workout/{{workout.id}}/delete-exercise/{{exer.id}}"> Delete </a>
                 </td>
                 <td>{{exer.sets}}
-                    <form action="/exercises.html">
-                        <input type="number" id="quantity" name="quantity" min="1" max="20">
+                    <form action="/workout/{{workout.id}}/exercise-sets/{{exer.id}}" method="POST">
+                        <input type="number" id="quantity" name="sets" min="1" max="20">
                     </form>
                 </td>
                 <td>{{exer.reps}}
-                    <form action="/action_page.php">
-                        <input type="number" id="quantity" name="quantity" min="1" max="10">
+                    <form action="/workout/{{workout.id}}/exercise-reps/{{exer.id}}" method="POST">
+                        <input type="number" id="quantity" name="reps" min="1" max="10">
                     </form>
                 </td>
             </tr>
