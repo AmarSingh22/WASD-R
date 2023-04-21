@@ -48,6 +48,9 @@ border-radius: 30px;
   margin: 0;
   padding: 0;
   font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .form input {
   margin-bottom: 20px;
