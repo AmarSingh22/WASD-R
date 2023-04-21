@@ -17,17 +17,36 @@
         <tbody> 
         {% for exer in exercises %}
             <tr>
-                <td><a class = 'exercises' href="/exercise/{{exer.id}}">{{exer.name}}</a>
-                    <button type="button">ADD to Workout</button>
+                <td><a class = 'exercises' href="/exercise/{{exer.id}}">{{exer.name}}  </a>
+                    <div class="workout">
+                        <a onclick="openform()" href="#">Add to Workout</a>
+                    </div>
+                    <br>
+                    <div class = "form-popup" id="add">
+                        <form method="POST" action="/exercise/{{exer.id}}" style="padding:1em">
+                            <input type="text" placeholder="Workout Name" name = "workout_name">
+                            <button type="submit" class="btn1">Submit</button>
+                            <button type="button" class = "btn1" onclick="closeForm()">Close</button>
+                        </form>
+                    </div>
                 </td>
                 <td>{{exer.muscle}}</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
+
+    
 </div>
 
 <script> 
+    function openform(){
+        document.getElementById("add").style.display="block";
+    }
+    function closeForm(){
+        document.getElementById("add").style.display = "none";
+    }
+    </script>
 </script>
 
 {% endblock %}

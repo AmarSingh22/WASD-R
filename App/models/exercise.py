@@ -34,7 +34,9 @@ class UserWorkout(db.Model):
     self.name = name
     
   def add_exercise(self, exercise_id):
-    new_exercise = WorkoutExercises(exercise_id = exercise_id)
+    exercise = Exercise.query.get(exercise_id)
+
+    new_exercise = WorkoutExercises(exercise_id = exercise_id, exercise_name= exercise.name,  sets= 1, reps= 1)
     new_exercise.workout_id = self.id
     self.Exercises.append(new_exercise)
     db.session.add(self)
@@ -82,10 +84,13 @@ class WorkoutExercises(db.Model):
   id = db.Column(db.Integer, primary_key=True)
   workout_id = db.Column(db.Integer, db.ForeignKey('user_workout.id'), nullable=False)
   exercise_id = db.Column(db.Integer, db.ForeignKey('exercise.id'), nullable=False)
-  sets = db.Column(db.Integer, nullable=False, default=1)
-  reps = db.Column(db.Integer, nullable=False, default=1)
+  exercise_name = db.Column(db.String(80), db.ForeignKey('exercise.name'), nullable=False)
+  sets = db.Column(db.Integer, default=1)
+  reps = db.Column(db.Integer, default=1)
 
-  def __init__(self, sets, reps):
+  def __init__(self, exercise_id, exercise_name, sets, reps):
+    self.exercise_id = exercise_id
+    self.exercise_name = exercise_name
     self.sets = sets
     self.reps = reps
 

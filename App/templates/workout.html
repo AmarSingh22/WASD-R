@@ -18,12 +18,12 @@
         <tbody> 
         {% for exer in workout.Exercises %}
             <tr>
-                <td>{{exer.name}}
+                <td>{{exer.exercise_name}}
                     <button type="button">Edit</button>
-                    <button type=""button>Delete</button>
+                    <button type="button">Delete</button>
                 </td>
-                <td></td>
-                <td></td>
+                <td>{{exer.sets}}</td>
+                <td>{{exer.reps}}</td>
             </tr>
         {% endfor %}
         </tbody>
