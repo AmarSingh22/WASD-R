@@ -39,7 +39,7 @@ def add_workout_action():
   data = request.form
   current_user.add_workout(data['name'])
   flash('Added')
-  return redirect(url_for('home_page'))
+  return redirect('/home')
 
 @exer_views.route('/rename-workout/<int:workout_id>', methods=["POST"])
 @login_required
@@ -50,7 +50,7 @@ def update_workout_action(workout_id):
     flash('Workout renamed')
   else:
     flash('Workout not found or unauthorized')
-  return redirect(url_for('home_page'))
+  return redirect('/home')
 
 @exer_views.route('/delete-workout/<int:workout_id>', methods=["GET"])
 @login_required
@@ -60,7 +60,7 @@ def del_workoutn_action(workout_id):
     flash('Invalid id or unauthorized')
   else:
     flash('Workout Deleted')
-  return redirect(url_for('home_page'))
+  return redirect('/home')
 
 
 #Workout Exercises Actions
@@ -74,7 +74,7 @@ def add_exercise_action(exer_id):
         flash('Exercise added')
     else:
         flash('Workout name does not exist')
-    return redirect(url_for('exer_page'))
+    return redirect('/exercise')
 
 @exer_views.route('/workout/<int:workout_id>/exercise-reps/<int:work_exer_id>', methods=["POST"])
 @login_required
@@ -85,7 +85,7 @@ def update_reps_action(workout_id, work_exer_id):
 
   if workoutExer and workout.user_id == current_user.id:
     workout.update_reps(work_exer_id, data['reps'])
-  return redirect(url_for('workout_page'))
+  return redirect(f'/workout/{workout_id}')
 
 @exer_views.route('/workout/<int:workout_id>/exercise-sets/<int:work_exer_id>', methods=["POST"])
 @login_required
@@ -96,7 +96,7 @@ def update_sets_action(workout_id, work_exer_id):
 
   if workoutExer and workout.user_id == current_user.id:
     workout.update_sets(work_exer_id, data['sets'])
-  return redirect(url_for('workout_page'))
+  return redirect(f'/workout/{workout_id}')
 
 @exer_views.route('/workout/<int:workout_id>/delete-exercise/<int:work_exer_id>', methods=["GET"])
 @login_required
@@ -109,7 +109,7 @@ def delete_exercise_action(workout_id, work_exer_id):
   else:
     flash('Exercise deleted')
     workout.del_exercise()
-  return redirect(url_for('workout_page'))
+  return redirect(f'/workout/{workout_id}')
 
 @exer_views.route('/workout/<int:workout_id>/workout-completed', methods=["POST"])
 @login_required
@@ -118,4 +118,4 @@ def workout_completed_action(workout_id):
 
   if workout and workout.user_id == current_user.id:
     jwt_current_user.workout_Completed(workout.name)
-  return redirect(url_for('calendar_page'))
+  return redirect('/calender')

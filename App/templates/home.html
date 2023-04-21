@@ -10,20 +10,18 @@
   <div>SESSIONS:</div>
   </div>
   <main>
+    {% for workout in workouts %}
     <div class="workout">
-    <a href="/workout">Workout</a>
+    <a href="/workout/{{workout.id}}">{{workout.name}}</a>
     </div>
-    <br>
-    <div class="workout">
-      <a class="adding" onclick="openform()" href="#">+</a>
-    </div>
+    {% endfor %}
     <br>
     <div class="workout">
       <a class="adding" onclick="openform()" href="#">+</a>
     </div>
     <br>
     <div class = "form-popup" id="add">
-      <form method="POST" action="/create_workout" style="padding:1em">
+      <form method="POST" action="/create-workout" style="padding:1em">
         <input type="text" placeholder="Workout Name" name = "name">
         <button type="submit" class="btn1">Submit</button>
         <button type="button" class = "btn1" onclick="closeForm()">Close</button>
