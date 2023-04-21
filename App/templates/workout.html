@@ -18,7 +18,7 @@
         <tbody> 
         {% for exer in workout.Exercises %}
             <tr>
-                <td>{{exer.exercise_name}}
+                <td><a href="/exercise/{{exer.id}}">{{exer.exercise_name}}</a>
                     <button type="button">Edit</button>
                     <a href="/workout/{{workout.id}}/delete-exercise/{{exer.id}}"> Delete </a>
                 </td>
