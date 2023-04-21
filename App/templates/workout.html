@@ -9,7 +9,7 @@
     <table>
         <thead>
             <tr>
-                <th>EXERCISE</th>
+                <th>EXERCISES</th>
                 <th>SETS</th>
                 <th>REPS</th>
             </tr>
@@ -18,22 +18,23 @@
         {% for exer in workout.Exercises %}
             <tr>
                 <td><a href="/exercise/{{exer.id}}">{{exer.exercise_name}}</a>
-                    <button type="button">Edit</button>
+                    <a href="/exercise">EDIT</a>
                     <a href="/workout/{{workout.id}}/delete-exercise/{{exer.id}}"> Delete </a>
                 </td>
-                <td>{{exer.sets}}</td>
-                <td>{{exer.reps}}</td>
+                <td>{{exer.sets}}
+                    <form action="/exercises.html">
+                        <input type="number" id="quantity" name="quantity" min="1" max="20">
+                    </form>
+                </td>
+                <td>{{exer.reps}}
+                    <form action="/action_page.php">
+                        <input type="number" id="quantity" name="quantity" min="1" max="10">
+                    </form>
+                </td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 </div>
-
-<script> 
-function numSets(){
-    document.getElementById();
-    <input type="number" id="quantity" name="quantity" min="1" max="10"> </input>
-}
-</script>
 
 {% endblock %}

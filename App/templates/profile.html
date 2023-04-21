@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+{% block title %}Profile {% endblock %}
+{% block page %}Wonder Workout{% endblock %}
+
+{{ super() }}
+
+{% block content %}
+
+<h1>Profile</h1>
+
+            Gender: {{user.gender}} 
+            <form name="updateGender" id="updateGender" class="card" method="POST" action="/profile/gender/{{user.gender}}">
+                <div class="card-content">
+                    <div class="input field">
+                        <input type="text" id="{{user.gender}}" placeholder="Enter Name" class="materialize-textarea">
+                    </div>
+                </div>
+                <div class="card-actions">
+                    <div class="row">
+                        <div class="col sm12 m4 offset-m8">
+                            <input class="btn blue right" id="update-{{user.gender}}" type="submit" value="edit"
+
+{% endblock %}
