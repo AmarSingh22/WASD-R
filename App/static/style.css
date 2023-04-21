@@ -166,3 +166,7 @@ opacity: 0.8;
   justify-content: center;
   font-size:xx-large;
 }
+
+#nav{
+  background-color: black;
+}
