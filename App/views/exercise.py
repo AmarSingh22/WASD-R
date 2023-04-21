@@ -104,11 +104,11 @@ def delete_exercise_action(workout_id, work_exer_id):
   workout = UserWorkout.query.get(workout_id)
   workoutExer = WorkoutExercises.query.get(work_exer_id)
 
-  if workoutExer == None or workout.user_id == current_user.id:
+  if workoutExer == None or workout.user_id != current_user.id:
     flash('Invalid id or unauthorized')
   else:
     flash('Exercise deleted')
-    workout.del_exercise()
+    workout.del_exercise(work_exer_id)
   return redirect(f'/workout/{workout_id}')
 
 @exer_views.route('/workout/<int:workout_id>/workout-completed', methods=["POST"])
