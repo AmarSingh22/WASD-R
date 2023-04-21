@@ -19,14 +19,14 @@
             <tr>
                 <td><a class = 'exercises' href="/exercise/{{exer.id}}">{{exer.name}}  </a>
                     <div class="workout">
-                        <a onclick="openform()" href="#">Add to Workout</a>
+                        <a onclick="openform( {{exer.id}} )" href="#">Add to Workout</a>
                     </div>
                     <br>
-                    <div class = "form-popup" id="add">
+                    <div class = "form-popup" id="{{exer.id}}">
                         <form method="POST" action="/exercise/{{exer.id}}" style="padding:1em">
                             <input type="text" placeholder="Workout Name" name = "workout_name">
                             <button type="submit" class="btn1">Submit</button>
-                            <button type="button" class = "btn1" onclick="closeForm()">Close</button>
+                            <button type="button" class = "btn1" onclick="closeForm({{exer.id}})">Close</button>
                         </form>
                     </div>
                 </td>
@@ -40,10 +40,10 @@
 </div>
 
 <script> 
-    function openform(){
-        document.getElementById("add").style.display="block";
+    function openform(id){
+        document.getElementById(id).style.display="block";
     }
-    function closeForm(){
+    function closeForm(id){
         document.getElementById("add").style.display = "none";
     }
     </script>

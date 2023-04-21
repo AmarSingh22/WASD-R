@@ -45,8 +45,10 @@ def add_workout_action():
 @login_required
 def update_workout_action(workout_id):
   data = request.form
-  res = current_user.update_workout(workout_id, data["new_name"])
-  if res:
+  workout = UserWorkout.query.get(workout_id)
+
+  if workout and workout.user_id == current_user.id :
+    current_user.update_workout(workout_id, data["new_name"])
     flash('Workout renamed')
   else:
     flash('Workout not found or unauthorized')
@@ -54,12 +56,13 @@ def update_workout_action(workout_id):
 
 @exer_views.route('/delete-workout/<int:workout_id>', methods=["GET"])
 @login_required
-def del_workoutn_action(workout_id):
-  res = current_user.del_workout(workout_id)
-  if res == None:
-    flash('Invalid id or unauthorized')
-  else:
+def del_workout_action(workout_id):
+  workout = UserWorkout.query.get(workout_id)
+  if workout and workout.user_id == current_user.id :
+    current_user.del_workout(workout_id)
     flash('Workout Deleted')
+  else:
+    flash('Invalid id or unauthorized')
   return redirect('/home')
 
 
@@ -74,7 +77,7 @@ def add_exercise_action(exer_id):
         flash('Exercise added')
     else:
         flash('Workout name does not exist')
-    return redirect('/exercise')
+    return redirect(f'/workout/{workout.id}')
 
 @exer_views.route('/workout/<int:workout_id>/exercise-reps/<int:work_exer_id>', methods=["POST"])
 @login_required
