@@ -1,7 +1,8 @@
-from flask import Blueprint, redirect, render_template, request, send_from_directory, jsonify
+from flask import Blueprint, redirect, render_template, request, send_from_directory, jsonify, flash
 from App.models import *
-from App.controllers import create_user
+from App.controllers import create_user, create_Exercise
 from flask_login import login_required, login_user, current_user, logout_user
+import json
 
 index_views = Blueprint('index_views', __name__, template_folder='../templates')
 
@@ -11,10 +12,15 @@ def index_page():
 
 @index_views.route('/init', methods=['GET'])
 def init():
-    db.drop_all()
-    db.create_all()
-    create_user('bob', 'bobpass')
-    return jsonify(message='db initialized!')
+  db.drop_all()
+  db.create_all()
+  create_user('bob', 'bobpass')
+  with open('Exercises.json') as file:
+    data = json.load(file)
+    for row in data:
+      create_Exercise(row['name'], row['type'], row['muscle'], row['equipment'], row['difficulty'], row['instructions'])
+  flash('database Updated')
+  return redirect('/')
 
 @index_views.route('/health', methods=['GET'])
 def health_check():
