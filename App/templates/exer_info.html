@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+{% block title %}Wonder Workout {% endblock %}
+{% block page %}Exercises Information{% endblock %}
+
+{{ super() }}
+
+{% block content %}
+
+<div class="tables">
+    <p> 
+        <strong>Name</strong>: {{exercise.name}}
+        <br>
+        <strong>Type</strong>: {{exercise.ex_type}}
+        <br>
+        <strong>Muscle</strong>: {{exercise.muscle}}
+        <br>
+        <strong>Equipment</strong>: {{exercise.equipment}}
+        <br>
+        <strong>Difficulty</strong>: {{exercise.difficulty}}
+        <br>
+        <strong>Instructions</strong>: {{exercise.instructions}}
+    </p>
+</div>
+
+<script> 
+</script>
+
+{% endblock %}

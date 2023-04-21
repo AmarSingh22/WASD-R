@@ -6,7 +6,7 @@
 
 {% block content %}
 
-<div class="">
+<div class="tables">
     <table>
         <thead>
             <tr>
@@ -17,7 +17,7 @@
         <tbody> 
         {% for exer in exercises %}
             <tr>
-                <td>{{exer.name}}
+                <td><a class = 'exercises' href="/exercise/{{exer.id}}">{{exer.name}}</a>
                     <button type="button">ADD to Workout</button>
                 </td>
                 <td>{{exer.muscle}}</td>
