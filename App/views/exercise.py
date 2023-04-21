@@ -16,21 +16,21 @@ exer_views = Blueprint('exer_views', __name__, template_folder='../templates')
 def update_gender_action():
   data = request.form
   current_user.update_gender(data['gender'])
-  return redirect(url_for('profile_page'))
+  return redirect('/profile')
 
 @exer_views.route('/profile/height', methods=['POST'])
 @login_required
 def update_height_action():
   data = request.form
   current_user.update_height(data['height'])
-  return redirect(url_for('profile_page'))
+  return redirect('/profile')
 
 @exer_views.route('/profile/weight', methods=['POST'])
 @login_required
 def update_weight_action():
   data = request.form
   current_user.update_weight(data['weight'])
-  return redirect(url_for('profile_page'))
+  return redirect('/profile')
 
 #Workout Actions
 @exer_views.route('/create-workout', methods=['POST'])
