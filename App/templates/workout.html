@@ -16,7 +16,7 @@
             </tr>
         </thead>
         <tbody> 
-        {% for exer in exercises %}
+        {% for exer in workout.Exercises %}
             <tr>
                 <td>{{exer.name}}
                     <button type="button">Edit</button>
@@ -37,4 +37,4 @@ function numSets(){
 }
 </script>
 
-{% end block %}
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends "layout.html" %}
+{% block title %}Exercises {% endblock %}
+{% block page %}Wonder Workout Exercises{% endblock %}
+
+{{ super() }}
+
+{% block content %}
+
+<div class="">
+    <table>
+        <thead>
+            <tr>
+                <th>Exercise</th>
+                <th>Muscle Group</th>
+            </tr>
+        </thead>
+        <tbody> 
+        {% for exer in exercises %}
+            <tr>
+                <td>{{exer.name}}
+                    <button type="button">ADD to Workout</button>
+                </td>
+                <td>{{exer.muscle}}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<script> 
+</script>
+
+{% endblock %}

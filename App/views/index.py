@@ -43,27 +43,27 @@ def workout_page(workout_id):
 @login_required
 def exer_page():
   exercises = Exercise.query.all()
-  render_template("exercise.html", exercises = exercises)
+  return render_template("exercise.html", exercises = exercises)
 
 @index_views.route('/exercise/<int:exer_id>', methods=['GET'])
 @login_required
 def exer_info_page(exer_id):
   exercise = Exercise.query.get(exer_id)
-  render_template("exer_info.html", exercise = exercise)
+  return render_template("exer_info.html", exercise = exercise)
 
 @index_views.route('/profile', methods=['GET'])
 @login_required
 def profile_page():
   user = User.query.get(current_user.id)
-  render_template("profile.html", user = user)
+  return render_template("profile.html", user = user)
 
 @index_views.route('/calendar', methods=['GET'])
 @login_required
 def calendar_page():
   user = User.query.get(current_user.id)
-  render_template("calendar.html", user = user)
+  return render_template("calendar.html", user = user)
 
 @index_views.route('/contact-us', methods=['GET'])
 @login_required
 def contact_page():
-  render_template("contact.html")
+  return render_template("contact.html")
