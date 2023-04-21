@@ -27,9 +27,9 @@
       <p> {{Session_Name}}</p>
       </div>
     </div>
-      
+
+    <div id="home-content">
     {% block content %}
-    <main>
       {% for workout in workouts %}
       <div class="workout">
       <a href="/workout/{{workout.id}}">{{workout.name}}</a>
@@ -56,11 +56,10 @@
           document.getElementById("add").style.display = "none";
         }
       </script>
-    </main>
     {% endblock %}
-
+    </div>
     <footer>
-      <nav>
+      <nav id="nav">
         <ul>
           <li><a href="/profile">Profile</a></li>
           <li><a href="/exercise">Exercises</a></li>
