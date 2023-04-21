@@ -13,14 +13,31 @@
     <div class="workout">
     <a href="/workout">Workout</a>
     </div>
-
+    <br>
     <div class="workout">
-      <a class="adding" href="#">+</a>
+      <a class="adding" onclick="openform()" href="#">+</a>
+    </div>
+    <br>
+    <div class="workout">
+      <a class="adding" onclick="openform()" href="#">+</a>
+    </div>
+    <br>
+    <div class = "form-popup" id="add">
+      <form method="POST" action="/create_workout" style="padding:1em">
+        <input type="text" placeholder="Workout Name" name = "name">
+        <button type="submit" class="btn1">Submit</button>
+        <button type="button" class = "btn1" onclick="closeForm()">Close</button>
+      </form>
     </div>
 
-    <div class="workout">
-      <a class="adding" href="#">+</a>
-    </div>
+    <script>
+      function openform(){
+        document.getElementById("add").style.display="block";
+      }
+      function closeForm() {
+        document.getElementById("add").style.display = "none";
+      }
+    </script>
     
   </main>
   <footer>
