@@ -138,3 +138,26 @@ cursor: pointer;
 width: 25%;
 opacity: 0.8;
 }
+
+.hello-user-logout{
+  height: 70px;
+  width: 25%;
+  float: left;
+  background-color:black;
+  color: white;
+  font-size:larger;
+  display:flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.session{
+  height: 70px;
+  width: 75%;
+  float: right;
+  border: double;
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  font-size:xx-large;
+}

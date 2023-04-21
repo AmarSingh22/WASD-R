@@ -6,9 +6,20 @@
 {{ super() }}
 
 {% block content %}
-<div><h3>Hello, {{user_name}} </h3>
-  <div>SESSIONS:</div>
+<div>
+  <div></div>
+  <div class="hello-user-logout">
+      <p>Hello, {{user_name}} </p>
+      <div><button id="logout" class="red-btn submit-btn"onclick="window.location.href='{{ url_for( 'auth_views.logout_action') }}' "> LOGOUT </button></div>
   </div>
+
+  </div>
+  
+  <div class="session">
+    <p>YOUR SESSIONS: </p>
+  </div>
+  </div>
+  
   <main>
     {% for workout in workouts %}
     <div class="workout">
