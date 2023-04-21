@@ -36,7 +36,7 @@ def signup_page():
 @login_required
 def home_page():
   user = User.query.get(current_user.id)
-  return render_template("home.html", workouts = user.Routines, user_name = user.username)
+  return render_template("home.html", workouts = user.Routines, user_name = user.username, Session_Name = 'YOUR SESSIONS:')
 
 @index_views.route('/workout/<int:workout_id>', methods=["GET"])
 @login_required
@@ -44,34 +44,34 @@ def workout_page(workout_id):
   workout = UserWorkout.query.get(workout_id)
 
   if workout and workout.user_id == current_user.id:
-    return render_template('workout.html', workout = workout)
+    return render_template('workout.html', workout = workout, user_name = current_user.username, Session_Name = workout.name )
   return redirect(url_for('home_page'))
 
 @index_views.route('/exercise', methods=['GET'])
 @login_required
 def exer_page():
   exercises = Exercise.query.all()
-  return render_template("exercise.html", exercises = exercises)
+  return render_template("exercise.html", exercises = exercises, user_name = current_user.username, Session_Name = 'Exercises')
 
 @index_views.route('/exercise/<int:exer_id>', methods=['GET'])
 @login_required
 def exer_info_page(exer_id):
   exercise = Exercise.query.get(exer_id)
-  return render_template("exer_info.html", exercise = exercise)
+  return render_template("exer_info.html", exercise = exercise, user_name = current_user.username, Session_Name = exercise.name )
 
 @index_views.route('/profile', methods=['GET'])
 @login_required
 def profile_page():
   user = User.query.get(current_user.id)
-  return render_template("profile.html", user = user)
+  return render_template("profile.html", user = user, user_name = current_user.username, Session_Name = current_user.username )
 
 @index_views.route('/calendar', methods=['GET'])
 @login_required
 def calendar_page():
   user = User.query.get(current_user.id)
-  return render_template("calendar.html", user = user)
+  return render_template("calendar.html", user = user, user_name = current_user.username, Session_Name = 'Calender' )
 
 @index_views.route('/contact-us', methods=['GET'])
 @login_required
 def contact_page():
-  return render_template("contact.html")
+  return render_template("contact.html", user_name = current_user.username, Session_Name = 'Contact Us' )

@@ -1,63 +1,73 @@
-{% extends "layout.html" %}
-{% block title %}Wonder Workout {% endblock %}
-{% block page %}Wonder Workout{% endblock %}
-
-
-{{ super() }}
-
-{% block content %}
-<div>
-  <div></div>
-  <div class="hello-user-logout">
-      <p>Hello, {{user_name}} </p>
-      <div><button id="logout" class="red-btn submit-btn"onclick="window.location.href='{{ url_for( 'auth_views.logout_action') }}' "> LOGOUT </button></div>
-  </div>
-
-  </div>
+<!doctype html>
+<html>
+  <head>
   
-  <div class="session">
-    <p>YOUR SESSIONS: </p>
-  </div>
-  </div>
-  
-  <main>
-    {% for workout in workouts %}
-    <div class="workout">
-    <a href="/workout/{{workout.id}}">{{workout.name}}</a>
-    </div>
-    {% endfor %}
-    <br>
-    <div class="workout">
-      <a class="adding" onclick="openform()" href="#">+</a>
-    </div>
-    <br>
-    <div class = "form-popup" id="add">
-      <form method="POST" action="/create-workout" style="padding:1em">
-        <input type="text" placeholder="Workout Name" name = "name">
-        <button type="submit" class="btn1">Submit</button>
-        <button type="button" class = "btn1" onclick="closeForm()">Close</button>
-      </form>
-    </div>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+     <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>{% block title %}{% endblock %}</title>
 
-    <script>
-      function openform(){
-        document.getElementById("add").style.display="block";
-      }
-      function closeForm() {
-        document.getElementById("add").style.display = "none";
-      }
-    </script>
+  </head>
+  <body>
     
-  </main>
-  <footer>
-    <nav>
-      <ul>
-        <li><a href="/profile">Profile</a></li>
-        <li><a href="/exercise">Exercises</a></li>
-        <li><a href="/contact_page">Contact Us</a></li>
-        <li><a href="/calender_page">Calendar</a></li>
-      </ul>
-    </nav>
-  </footer>
-</body>
-{% endblock %}
+    <div>
+      <div></div>
+      <div class="hello-user-logout">
+          <p>Hello, {{user_name}} </p>
+          <div><button id="logout" class="red-btn submit-btn"onclick="window.location.href='{{ url_for( 'auth_views.logout_action') }}' "> LOGOUT </button></div>
+      </div>
+
+    </div>
+      
+    <div class="session">
+      <p> {{Session_Name}}</p>
+      </div>
+    </div>
+      
+    {% block content %}
+    <main>
+      {% for workout in workouts %}
+      <div class="workout">
+      <a href="/workout/{{workout.id}}">{{workout.name}}</a>
+      </div>
+      {% endfor %}
+      <br>
+      <div class="workout">
+        <a class="adding" onclick="openform()" href="#">+</a>
+      </div>
+      <br>
+      <div class = "form-popup" id="add">
+        <form method="POST" action="/create-workout" style="padding:1em">
+          <input type="text" placeholder="Workout Name" name = "name">
+          <button type="submit" class="btn1">Submit</button>
+          <button type="button" class = "btn1" onclick="closeForm()">Close</button>
+        </form>
+      </div>
+
+      <script>
+        function openform(){
+          document.getElementById("add").style.display="block";
+        }
+        function closeForm() {
+          document.getElementById("add").style.display = "none";
+        }
+      </script>
+    </main>
+    {% endblock %}
+
+    <footer>
+      <nav>
+        <ul>
+          <li><a href="/profile">Profile</a></li>
+          <li><a href="/exercise">Exercises</a></li>
+          <li><a href="/contact_page">Contact Us</a></li>
+          <li><a href="/calender_page">Calendar</a></li>
+        </ul>
+      </nav>
+    </footer>
+  </body>
+</html>
