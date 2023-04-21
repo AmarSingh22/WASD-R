@@ -56,10 +56,11 @@ def login_action():
   return redirect('/')
 
 @auth_views.route('/logout', methods=['GET'])
+@login_required
 def logout_action():
-    data = request.form
-    user = login(data['username'], data['password'])
-    return 'logged out!'
+  logout_user()
+  flash('Logged Out')
+  return redirect('/')
 
 '''
 API Routes
