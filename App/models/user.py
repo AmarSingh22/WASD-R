@@ -8,8 +8,8 @@ class User(db.Model, UserMixin):
     username =  db.Column(db.String, nullable=False, unique=True)
     password = db.Column(db.String(120), nullable=False)
     gender = db.Column(db.String(1))
-    height = db.Column(db.Integer)
-    weight = db.Column(db.Integer)
+    height = db.Column(db.Float)
+    weight = db.Column(db.Float)
     Routines = db.relationship('UserWorkout', backref='user', lazy=True, cascade="all, delete-orphan")
     Calendar = db.relationship('WorkoutCalender', backref='user', lazy=True, cascade="all, delete-orphan")
 

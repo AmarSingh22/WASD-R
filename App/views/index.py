@@ -24,10 +24,6 @@ def init():
   return redirect('/')
 '''
 
-@index_views.route('/health', methods=['GET'])
-def health_check():
-    return jsonify({'status':'healthy'})
-
 @index_views.route("/signup", methods=['GET'])
 def signup_page():
     return render_template("signup.html")
@@ -63,7 +59,24 @@ def exer_info_page(exer_id):
 @login_required
 def profile_page():
   user = User.query.get(current_user.id)
-  return render_template("profile.html", user = user, user_name = current_user.username, Session_Name = current_user.username )
+
+  if user.weight != None and user.height != None:
+    bmi = user.weight/(user.height * user.height)
+  else:
+    bmi = 0
+
+  if bmi < 18.5:
+    status = 'Underweight'
+  elif bmi >= 18.5 and bmi < 25:
+    status = 'Normal weight'
+  elif bmi >= 25 and bmi < 30:
+    status = 'Overweight'
+  else:
+    status = 'Obese'
+
+  bmi = "%.2f" % bmi
+
+  return render_template("profile.html", user = user, user_name = current_user.username, Session_Name = current_user.username, bmi = bmi, status = status )
 
 @index_views.route('/calendar', methods=['GET'])
 @login_required
