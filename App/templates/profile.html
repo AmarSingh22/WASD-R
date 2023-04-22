@@ -12,14 +12,14 @@
         <div id="display-left">
 
             <div class="gender">
-                <a class="" onclick="openform('gender')" href="#">EDIT</a>
+                <button onclick="openform('gender')" >EDIT</button>
               </div>
               <br>
               <div class = "form-popup" id="gender">
                 <form method="POST" action="/profile/gender" style="padding:1em">
                   <input type="text" name = "gender">
                   <button type="submit" class="btn1">Submit</button>
-                  <button type="button" class = "btn1" onclick="closeForm()">Close</button>
+                  <button type="button" class = "btn1" onclick="closeForm('gender')">Close</button>
                 </form>
               </div>
         </div>
@@ -27,19 +27,19 @@
 
     <div class="user-height">
         <div id="display-left">
-            Height: {{user.height}} 
+            Height: {{user.height}} cm
         </div>
         <div id="display-left">
 
             <div class="height">
-                <a class="" onclick="openform('height')" href="#">EDIT</a>
+              <button onclick="openform('height')" >EDIT</button>
               </div>
               <br>
               <div class = "form-popup" id="height">
                 <form method="POST" action="/profile/height" style="padding:1em">
                   <input type="number" name = "height" step="any">
                   <button type="submit" class="btn1">Submit</button>
-                  <button type="button" class = "btn1" onclick="closeForm()">Close</button>
+                  <button type="button" class = "btn1" onclick="closeForm('height')">Close</button>
                 </form>
             </div>
 
@@ -48,30 +48,31 @@
 
     <div class="user-weight">
         <div id="display-left">
-            Weight: {{user.weight}} 
+            Weight: {{user.weight}} kg
         </div>
         <div id="display-left">
 
             <div class="weight">
-                <a class="" onclick="openform('weight')" href="#">EDIT</a>
+                <button onclick="openform('weight')" >EDIT</button>
               </div>
               <br>
               <div class = "form-popup" id="weight">
                 <form method="POST" action="/profile/weight" style="padding:1em">
                   <input type="number" name = "weight" step="any">
                   <button type="submit" class="btn1">Submit</button>
-                  <button type="button" class = "btn1" onclick="closeForm()">Close</button>
+                  <button type="button" class = "btn1" onclick="closeForm('weight')">Close</button>
                 </form>
               </div>
         </div>
     </div>
 
     <div class="profile-element">
-      <p>BMI: {{bmi}}</p>
+        <p>BMI: {{bmi}}</p>
     </div>
 
     <div class="profile-element">
         <p>Weight Status: {{status}}</p>
+
     </div>
 
     <div class="profile-element">
@@ -82,7 +83,7 @@
       function openform(id){
         document.getElementById(id).style.display="block";
       }
-      function closeForm() {
+      function closeForm(id) {
         document.getElementById(id).style.display = "none";
       }
     </script>
