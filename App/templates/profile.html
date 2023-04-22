@@ -5,21 +5,93 @@
 {{ super() }}
 
 {% block content %}
-
+    <div class="user-gender">
+        <div id="display-left">
             Gender: {{user.gender}} 
-            <form  id="updateGender" class="card" method="POST" action="/profile/gender">
-                <div class="card-content">
-                    <div class="input field">
-                        <input type="text" name="gender" id="gender-text" placeholder="M/F" class="materialize-textarea">
-                    </div>
-                </div>
-                <div class="card-actions">
-                    <div class="row">
-                        <div class="col sm12 m4 offset-m8">
-                            <input class="btn blue right" id="updateGender" type="submit" value="edit"
-                        </div>
-                    </div>
-                </div>
-            </form>
+        </div>
+        <div id="display-left">
+
+            <div class="gender">
+                <a class="" onclick="openform()" href="#">EDIT</a>
+              </div>
+              <br>
+              <div class = "form-popup" id="add">
+                <form method="POST" action="/profile/gender" style="padding:1em">
+                  <input type="text" name = "gender">
+                  <button type="submit" class="btn1">Submit</button>
+                  <button type="button" class = "btn1" onclick="closeForm()">Close</button>
+                </form>
+              </div>
+        
+              <script>
+                function openform(){
+                  document.getElementById("add").style.display="block";
+                }
+                function closeForm() {
+                  document.getElementById("add").style.display = "none";
+                }
+              </script>
+
+        </div>
+    </div>
+
+    <div class="user-height">
+        <div id="display-left">
+            Weight: {{user.height}} 
+        </div>
+        <div id="display-left">
+
+            <div class="height">
+                <a class="" onclick="openform()" href="#">EDIT</a>
+              </div>
+              <br>
+              <div class = "form-popup" id="add">
+                <form method="POST" action="/profile/height" style="padding:1em">
+                  <input type="text" name = "height">
+                  <button type="submit" class="btn1">Submit</button>
+                  <button type="button" class = "btn1" onclick="closeForm()">Close</button>
+                </form>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="user-weight">
+        <div id="display-left">
+            Weight: {{user.weight}} 
+        </div>
+        <div id="display-left">
+
+            <div class="weight">
+                <a class="" onclick="openform()" href="#">EDIT</a>
+              </div>
+              <br>
+              <div class = "form-popup" id="add">
+                <form method="POST" action="/profile/weight" style="padding:1em">
+                  <input type="text" name = "weight">
+                  <button type="submit" class="btn1">Submit</button>
+                  <button type="button" class = "btn1" onclick="closeForm()">Close</button>
+                </form>
+              </div>
+        
+              <script>
+                function openform(){
+                  document.getElementById("add").style.display="block";
+                }
+                function closeForm() {
+                  document.getElementById("add").style.display = "none";
+                }
+              </script>
+
+        </div>
+    </div>
+
+    <div class="profile-element">
+        <p>Weight Status:</p>
+    </div>
+
+    <div class="profile-element">
+        <p>Workouts completed for Month:  </p>
+    </div>
 
 {% endblock %}

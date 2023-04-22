@@ -138,6 +138,7 @@ border: 3px solid #f1f1f1;
 background-color: #555555;
 transform: translate(-50%, -50%);
 }
+
 .btn1{
 background-color: red;
 color: white;
@@ -182,4 +183,41 @@ opacity: 0.8;
 
 .p1{
   width: 30%;
+}
+
+#display-left{
+  width: 50%;
+  height: 40px;
+  float: left;
+  display: flex;
+  align-items: center;
+  justify-content: center;  
+}
+
+#display-right{
+  width: 50%;
+  height: 40px;
+  float: right;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.complete-button{
+  margin: 0 auto;
+  padding:20px;
+  width: 15px;
+  background-color: black;
+  height: 10px;
+  border-radius: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.tables{
+  margin:0 auto;
+  padding-left: 10%;
+  padding-right: 12%;
+
 }
