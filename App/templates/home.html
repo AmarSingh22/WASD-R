@@ -10,13 +10,21 @@
     <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>{% block title %}{% endblock %}</title>
+    <style>
+      a{
+        color: black;
+      }
+      a.complete-button{
+        color: whitesmoke;
+      }
 
+    </style>
   </head>
   <body>
     
     {% with messages = get_flashed_messages() %}
       {% if messages %}
-      <nav class="white black-text" style="padding: 10px">
+      <nav class="black white-text" style="padding: 10px">
         <div class="nav-wrapper">
             <ul class="flashes">
             {% for message in messages %}
@@ -32,10 +40,8 @@
       <div></div>
       <div class="hello-user-logout">
           <p class="p1">Hello, {{user_name}} </p>
-          <div><button id="logout" class="red-btn submit-btn"onclick="window.location.href='{{ url_for( 'auth_views.logout_action') }}' "> LOGOUT </button></div>
+          <div><button id="logout" class="red-btn submit-btn" onclick="window.location.href='{{ url_for( 'auth_views.logout_action') }}' "> LOGOUT </button></div>
       </div>
-
-    </div>
       
     <div class="session">
       <p> {{Session_Name}}</p>
@@ -43,20 +49,22 @@
     </div>
 
 
-    <div class="invisible"></div>
-
     <div id="home-content">
     {% block content %}
+    <div class="invisible"></div>
       {% for workout in workouts %}
-      
-      <div class="workout">
-      <a href="/workout/{{workout.id}}">{{workout.name}}</a>
-      </div>
-      {% endfor %}
+      <a href="/workout/{{workout.id}}">
+        <div class="workout">
+          {{workout.name}}
+        </div>
+      </a>
       <br>
-      <div class="workout">
-        <a class="adding" onclick="openform()" href="#">+</a>
-      </div>
+      {% endfor %}
+      <a class="adding" onclick="openform()" href="#">
+        <div class="workout">
+          +
+        </div>
+      </a>
       <br>
       <div class = "form-popup" id="add">
         <form method="POST" action="/create-workout" style="padding:1em">
