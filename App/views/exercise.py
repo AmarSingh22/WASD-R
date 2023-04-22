@@ -114,11 +114,11 @@ def delete_exercise_action(workout_id, work_exer_id):
     workout.del_exercise(work_exer_id)
   return redirect(f'/workout/{workout_id}')
 
-@exer_views.route('/workout/<int:workout_id>/workout-completed', methods=["POST"])
+@exer_views.route('/workout/<int:workout_id>/workout-completed', methods=["GET"])
 @login_required
 def workout_completed_action(workout_id):
   workout = UserWorkout.query.get(workout_id)
 
   if workout and workout.user_id == current_user.id:
-    jwt_current_user.workout_Completed(workout.name)
-  return redirect('/calender')
+    current_user.workout_Completed(workout.name)
+  return redirect('/home')

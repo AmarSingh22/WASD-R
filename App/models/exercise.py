@@ -113,9 +113,8 @@ class WorkoutCalender(db.Model):
   name = db.Column(db.String(80), nullable=False)
   date = db.Column(db.Date, default=datetime.datetime.now())
 
-  def __init__(self, name, date):
+  def __init__(self, name):
     self.name = name
-    self.date = date
 
   def get_json(self):
     return{

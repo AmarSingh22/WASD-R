@@ -3,6 +3,8 @@ from App.models import *
 from App.controllers import create_user, create_Exercise
 from flask_login import login_required, login_user, current_user, logout_user
 import json
+import datetime
+import calendar
 
 index_views = Blueprint('index_views', __name__, template_folder='../templates')
 
@@ -76,7 +78,15 @@ def profile_page():
 
   bmi = "%.2f" % bmi
 
-  return render_template("profile.html", user = user, user_name = current_user.username, Session_Name = current_user.username, bmi = bmi, status = status )
+  current_time = datetime.datetime.now()
+  month = calendar.month_name[current_time.month]
+
+  num_workouts = 0
+  for x in user.Calendar:
+    if x.date.month == current_time.month and x.date.year == current_time.year:
+      num_workouts = num_workouts + 1
+
+  return render_template("profile.html", user = user, user_name = current_user.username, Session_Name = current_user.username, bmi = bmi, status = status, month = month, num_workouts = num_workouts )
 
 @index_views.route('/calendar', methods=['GET'])
 @login_required
