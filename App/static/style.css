@@ -178,6 +178,15 @@ opacity: 0.8;
   align-items: center;
   justify-content: center;
 }
+#signup-btn{
+  background: radial-gradient(gray, #3a3838);
+  border: 2px dotted black;
+  border-radius: 30px;
+  padding: 10px;
+}
+a.invisible{
+  color: whitesmoke;
+}
 
 #session{
   height: 70px;
