@@ -17,7 +17,7 @@
     <div>
       <div></div>
       <div class="hello-user-logout">
-          <p>Hello, {{user_name}} </p>
+          <p class="p1">Hello, {{user_name}} </p>
           <div><button id="logout" class="red-btn submit-btn"onclick="window.location.href='{{ url_for( 'auth_views.logout_action') }}' "> LOGOUT </button></div>
       </div>
 
@@ -27,6 +27,8 @@
       <p> {{Session_Name}}</p>
       </div>
     </div>
+
+    <div class="invisible"></div>
 
     <div id="home-content">
     {% block content %}
