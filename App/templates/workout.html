@@ -18,8 +18,8 @@
         {% for exer in workout.Exercises %}
             <tr>
                 <td><a href="/exercise/{{exer.id}}">{{exer.exercise_name}}</a>
-                    <a href="/exercise">EDIT</a>
-                    <a href="/workout/{{workout.id}}/delete-exercise/{{exer.id}}"> Delete </a>
+                    <a href="/exercise" class="button">Edit</a>
+                    <a href="/workout/{{workout.id}}/delete-exercise/{{exer.id}}" class="button"> Delete </a>
                 </td>
                 <td>
                     <form action="/workout/{{workout.id}}/exercise-sets/{{exer.id}}"  method="POST">
