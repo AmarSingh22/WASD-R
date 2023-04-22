@@ -31,8 +31,6 @@ footer{
   padding: 30px;
 }
 
-
-
 .form-box {
   position: absolute;
   top: 50%;
@@ -202,18 +200,12 @@ opacity: 0.8;
   width: 50%;
   height: 40px;
   float: left;
-  display: flex;
-  align-items: center;
-  justify-content: center;  
 }
 
 #display-right{
   width: 50%;
   height: 40px;
   float: right;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 .complete-button{
@@ -242,7 +234,6 @@ opacity: 0.8;
 }
 
 .profile-element{
-  margin-left:21.5% ;
   width: 50%;
   height: 40px;
   display: flex;
@@ -253,4 +244,8 @@ opacity: 0.8;
 .align{
   margin-left: 20%;
   margin-right: 20%;
+}
+
+.align-profile{
+  margin-left: 30%;
 }

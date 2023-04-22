@@ -5,6 +5,7 @@
 {{ super() }}
 
 {% block content %}
+<div class="align-profile">
     <div class="user-gender">
         <div id="display-left">
             Gender: {{user.gender}} 
@@ -50,6 +51,7 @@
         <div id="display-left">
             Weight: {{user.weight}} kg
         </div>
+        <div class="profile-element">
         <div id="display-left">
 
             <div class="weight">
@@ -63,6 +65,7 @@
                   <button type="button" class = "btn1" onclick="closeForm('weight')">Close</button>
                 </form>
               </div>
+        </div>
         </div>
     </div>
 
@@ -78,6 +81,8 @@
     <div class="profile-element">
         <p>Workouts completed for {{month}}:  {{num_workouts}}</p>
     </div>
+
+</div>
 
     <script>
       function openform(id){
