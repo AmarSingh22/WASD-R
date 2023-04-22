@@ -249,3 +249,8 @@ opacity: 0.8;
   align-items: center;
   justify-content: left;
 }
+
+.align{
+  margin-left: 20%;
+  margin-right: 20%;
+}
