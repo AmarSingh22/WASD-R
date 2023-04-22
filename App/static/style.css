@@ -8,18 +8,20 @@ body {
   background-size: cover;
 }
 
-
-
 img{
 width: 100%;
 height: 200px;
 border-radius: 30px;
 }
 
-#divquart{
-  width: 25%;
-  float: left;
+footer{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 30px;
 }
+
+
 
 .form-box {
   position: absolute;
@@ -47,8 +49,8 @@ border-radius: 30px;
   height: 10px;
   border-radius: 15px;
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
 }
 
 .form {
@@ -109,6 +111,8 @@ align-items: center;
 justify-content: center;
 }
 
+
+
 .workout{
 border: dotted;
 border-radius: 30px;
@@ -167,6 +171,15 @@ opacity: 0.8;
   font-size:xx-large;
 }
 
-#nav{
-  background-color: black;
+.invisible{
+  height: 100px;
+}
+
+#divquart{
+  width: 25%;
+  float: left;
+}
+
+.p1{
+  width: 30%;
 }
