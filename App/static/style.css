@@ -229,7 +229,9 @@ a.invisible{
   background-color: black;
   color: whitesmoke;
   border-radius: 15px;
-  display: inline;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .tables{
