@@ -75,9 +75,11 @@ def add_exercise_action(exer_id):
     if workout and workout.user_id == current_user.id:
         workout.add_exercise(exer_id)
         flash('Exercise added')
+        return redirect(f'/workout/{workout.id}')
     else:
-        flash('Workout name does not exist')
-    return redirect(f'/workout/{workout.id}')
+      flash('Workout name does not exist')
+      return redirect('/exercise')
+      
 
 @exer_views.route('/workout/<int:workout_id>/exercise-reps/<int:work_exer_id>', methods=["POST"])
 @login_required

@@ -249,8 +249,9 @@ a.invisible{
   display: flex;
   align-items: center;
   justify-content: left;
-  margin-bottom: 10px;
+  margin-top: 20px;
   width: fit-content;
+  font-size: large;
 }
 
 .align{

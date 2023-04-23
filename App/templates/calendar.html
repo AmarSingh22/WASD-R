@@ -1,13 +1,36 @@
 {% extends "home.html" %}
-{% block title %}Exercises {% endblock %}
+{% block title %}Calendar {% endblock %}
 
 {{ super() }}
 
 {% block content %}
 
+<div class="invisible"></div>
 <div class="align">
-    
-    
+    <a href="/calendar/{{year}}/{{month - 1}}"><div class="complete-button align-left">Last month</div></a>
+    <a href="/calendar/{{year}}/{{month + 1}}"><div class="complete-button align-right">Next month</div></a>
+    <div class="profile-element">
+        <p>Workouts completed for {{Session_Name}}:  {{num_workouts}}</p>
+    </div>
+    <div class="profile-element">
+        <p>Workouts completed:</p><br>
+    </div>
+    <table>
+        <thead>
+            <th>Name</th>
+            <th>Date</th>
+        </thead>
+        <tbody>
+    {% for x in user.Calendar%}
+        {% if x.date.month == month and x.date.year == year %}
+            <tr>
+                <td>{{x.name}}</td>
+                <td>{{x.date.day}}</td>
+            </tr>
+        {% endif %}
+    {% endfor%}
+        </tbody>
+    </table>
 </div>
 
 {% endblock %}

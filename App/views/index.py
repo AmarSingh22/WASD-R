@@ -82,17 +82,31 @@ def profile_page():
   month = calendar.month_name[current_time.month]
 
   num_workouts = 0
-  for x in user.Calendar:
+  for x in current_user.Calendar:
     if x.date.month == current_time.month and x.date.year == current_time.year:
       num_workouts = num_workouts + 1
 
   return render_template("profile.html", user = user, user_name = current_user.username, Session_Name = current_user.username, bmi = bmi, status = status, month = month, num_workouts = num_workouts )
 
+@index_views.route('/calendar/<int:year>/<int:month>', methods=['GET'])
 @index_views.route('/calendar', methods=['GET'])
 @login_required
-def calendar_page():
-  user = User.query.get(current_user.id)
-  return render_template("calendar.html", user = user, user_name = current_user.username, Session_Name = 'Calender' )
+def calendar_page(month = datetime.datetime.now().month, year = datetime.datetime.now().year):
+  month_name = calendar.month_name[month]
+
+  if month == 0:
+    month = 12
+    year = year - 1
+  if month == 13:
+    month = 1
+    year = year + 1
+
+  num_workouts = 0
+  for x in current_user.Calendar:
+    if x.date.month == month and x.date.year == year:
+      num_workouts = num_workouts + 1
+
+  return render_template("calendar.html", user = current_user, user_name = current_user.username, Session_Name = month_name, num_workouts = num_workouts, month = month, year = year )
 
 @index_views.route('/contact-us', methods=['GET'])
 @login_required
