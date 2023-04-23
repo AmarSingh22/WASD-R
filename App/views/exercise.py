@@ -52,7 +52,7 @@ def update_workout_action(workout_id):
     flash('Workout renamed')
   else:
     flash('Workout not found or unauthorized')
-  return redirect('/home')
+  return redirect(f'/workout/{workout_id}')
 
 @exer_views.route('/delete-workout/<int:workout_id>', methods=["GET"])
 @login_required

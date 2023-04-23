@@ -225,16 +225,11 @@ a.invisible{
 }
 
 .complete-button{
-  margin: 0 auto;
   padding:20px;
-  width: 15px;
   background-color: black;
   color: whitesmoke;
-  height: 10px;
   border-radius: 15px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  display: inline;
 }
 
 .tables{
@@ -281,3 +276,4 @@ a.invisible{
   border-radius: 30px;
   border-color: black;
 }
+
