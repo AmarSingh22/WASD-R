@@ -21,13 +21,13 @@
     </style>
   </head>
   <body>
-    <div id="home_header">
-      <div id="hello-user-logout">
+      <div class="hello-user-logout">
           <p class="p1">Hello, {{user_name}} </p>
-          <div><button id="logout" class="red-btn submit-btn" onclick="window.location.href='/logout' "> LOGOUT </button></div>
+          <div><button id="logout" class="red-btn submit-btn" onclick="window.location.href='{{ url_for( 'auth_views.logout_action') }}' "> LOGOUT </button></div>
       </div>
-      <div id="session">
-        <p> {{Session_Name}}</p>
+      
+    <div class="session">
+      <p> {{Session_Name}}</p>
       </div>
       <div > 
         <a href="/home"> <img src="../static/Logo.jpeg" id = "logo"> </a>
