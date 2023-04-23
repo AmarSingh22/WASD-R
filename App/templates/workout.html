@@ -38,11 +38,37 @@
 </div>
 
 <div class="invisible"></div>
-
-<a href="/workout/{{workout.id}}/workout-completed">
-    <div class="complete-button">
-        ✓ 
+<div>
+    <a href="/workout/{{workout.id}}/workout-completed">
+        <div class="complete-button">
+            ✓ 
+        </div>
+    </a>
+    <a href="/delete-workout/{{workout.id}}">
+        <div class="complete-button">
+            DELETE
+        </div>
+    </a>
+    <a href="#" onclick="openform()">
+        <div class="complete-button">
+            UPDATE
+        </div>
+    </a>
+    <div class = "form-popup" id="add">
+        <form method="POST" action="/rename-workout/{{workout.id}}" style="padding:1em">
+        <input type="text" placeholder="Workout Name" name = "new_name">
+        <button type="submit" class="btn1">Submit</button>
+        <button type="button" class = "btn1" onclick="closeForm()">Close</button>
+        </form>
     </div>
-</a>
+</div>
+<script>
+    function openform(){
+      document.getElementById("add").style.display="block";
+    }
+    function closeForm() {
+      document.getElementById("add").style.display = "none";
+    }
+</script>
 
 {% endblock %}

@@ -43,7 +43,7 @@ def workout_page(workout_id):
 
   if workout and workout.user_id == current_user.id:
     return render_template('workout.html', workout = workout, user_name = current_user.username, Session_Name = workout.name )
-  return redirect(url_for('home_page'))
+  return redirect('/home')
 
 @index_views.route('/exercise', methods=['GET'])
 @login_required
