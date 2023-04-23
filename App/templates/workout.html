@@ -18,8 +18,8 @@
         {% for exer in workout.Exercises %}
             <tr>
                 <td><a href="/exercise/{{exer.id}}">{{exer.exercise_name}}</a>
-                    <a href="/exercise" class="button">Edit</a>
-                    <a href="/workout/{{workout.id}}/delete-exercise/{{exer.id}}" class="button"> Delete </a>
+                    <a href="/exercise">EDIT</a>
+                    <a href="/workout/{{workout.id}}/delete-exercise/{{exer.id}}"> Delete </a>
                 </td>
                 <td>
                     <form action="/workout/{{workout.id}}/exercise-sets/{{exer.id}}"  method="POST">
@@ -37,41 +37,12 @@
     </table>
 </div>
 
-<div class="invisible">
-</div>
-<div>
-    <a href="/workout/{{workout.id}}/workout-completed">
-        <div class="complete-button">
-            ✓ 
-        </div>
-    </a>
-    <a href="/delete-workout/{{workout.id}}">
-        <div class="complete-button">
-            Delete
-        </div>
-    </a>
-    <a onclick="openform()" href="#">
-        <div class="complete-button">
-            Update
-        </div>
-    </a>
-    <br>
-    <div class = "form-popup" id="update">
-        <form method="POST" action="/rename-workout/{{workout.id}}" style="padding:1em">
-            <input type="text" placeholder="Workout Name" name = "new_name">
-            <button type="submit" class="btn1">Submit</button>
-            <button type="button" class = "btn1" onclick="closeForm()">Close</button>
-        </form>
-    </div>
-</div>
+<div class="invisible"></div>
 
-<script> 
-    function openform(){
-        document.getElementById("update").style.display="block";
-    }
-    function closeForm(){
-        document.getElementById("update").style.display = "none";
-    }
-</script>
+<a href="/workout/{{workout.id}}/workout-completed">
+    <div class="complete-button">
+        ✓ 
+    </div>
+</a>
 
 {% endblock %}
