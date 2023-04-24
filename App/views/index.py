@@ -12,7 +12,7 @@ index_views = Blueprint('index_views', __name__, template_folder='../templates')
 def index_page():
     return render_template('login.html')
 
-'''
+
 @index_views.route('/init', methods=['GET'])
 def init():
   db.drop_all()
@@ -24,7 +24,6 @@ def init():
       create_Exercise(row['name'], row['type'], row['muscle'], row['equipment'], row['difficulty'], row['instructions'])
   flash('database Updated')
   return redirect('/')
-'''
 
 @index_views.route("/signup", methods=['GET'])
 def signup_page():
